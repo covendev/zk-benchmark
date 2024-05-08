@@ -11,3 +11,8 @@ pytest==7.2.1
 pytest-cov==4.0.0
 flake8==6.0.0
 Werkzeug==2.2.2
+pandas 
+matplotlib
+io 
+base64
+
