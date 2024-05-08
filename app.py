@@ -54,7 +54,7 @@ def index():
     
     # Embed plot into HTML
     plot_url = base64.b64encode(img.getvalue()).decode()
-
+    print(plot_url)
     return render_template('index.html', plot_url=plot_url)
 
 if __name__ == '__main__':
