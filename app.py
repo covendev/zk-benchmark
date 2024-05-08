@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
-
+from flask_frozen import Freezer
 app = Flask(__name__)
 
 # CSV data
@@ -55,5 +55,8 @@ def index():
 
     return render_template('index.html', plot_url=plot_url)
 
+freezer = Freezer(app)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Generate the static files using Frozen-Flask
+    freezer.freeze()
