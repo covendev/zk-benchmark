@@ -29,7 +29,7 @@ risczero,iter_sha2,100,3635788,2508,229160'''
 @app.route('/')
 def index():
     # Convert the CSV data into a pandas DataFrame
-    df = pd.read_csv(pd.compat.StringIO(csv_data))
+    df = pd.read_csv(StringIO(csv_data))
 
     # Group by 'prover' and 'job_size' and calculate the average verify duration
     grouped = df.groupby(['prover', 'job_size'])['verify_duration_microsec'].mean().reset_index()
