@@ -46,16 +46,18 @@ def index():
     ax1.tick_params(axis='y', colors='white')  # Set y-axis text color
     ax1.spines['bottom'].set_color('white')  # Set bottom border color
     ax1.spines['left'].set_color('white')  # Set left border color
+    ax1.spines['bottom'].set_linewidth(0.5)  # Set bottom border thickness
+    ax1.spines['left'].set_linewidth(0.5)  # Set left border thickness
     plt.title('Average Verify Duration by Job Size and Prover', color='white')  # Set plot title color
     plt.xlabel('Job Size', color='white')  # Set x-axis label color
     plt.ylabel('Average Verify Duration (microseconds)', color='white')  # Set y-axis label color
     plt.xticks(rotation=0, color='white')  # Set x-axis tick color
     plt.yticks(color='white')  # Set y-axis tick color
-    plt.legend(title='Prover', facecolor='black', edgecolor='white', fontsize='small', title_fontsize='small')  # Set legend properties
+    plt.legend(title='Prover', facecolor='black', edgecolor='white', fontsize='small', title_fontsize='small', labelcolor='white')  # Set legend properties
 
     # Save verify plot to a BytesIO object
     verify_img = BytesIO()
-    plt.savefig(verify_img, format='png')
+    plt.savefig(verify_img, format='png', facecolor='black', transparent=True)
     verify_img.seek(0)
     
     # Embed verify plot into HTML
@@ -74,16 +76,18 @@ def index():
     ax2.tick_params(axis='y', colors='white')  # Set y-axis text color
     ax2.spines['bottom'].set_color('white')  # Set bottom border color
     ax2.spines['left'].set_color('white')  # Set left border color
+    ax2.spines['bottom'].set_linewidth(0.5)  # Set bottom border thickness
+    ax2.spines['left'].set_linewidth(0.5)  # Set left border thickness
     plt.title('Average Proof Duration by Job Size and Prover', color='white')  # Set plot title color
     plt.xlabel('Job Size', color='white')  # Set x-axis label color
     plt.ylabel('Average Proof Duration (microseconds)', color='white')  # Set y-axis label color
     plt.xticks(rotation=0, color='white')  # Set x-axis tick color
     plt.yticks(color='white')  # Set y-axis tick color
-    plt.legend(title='Prover', facecolor='black', edgecolor='white', fontsize='small', title_fontsize='small')  # Set legend properties
+    plt.legend(title='Prover', facecolor='black', edgecolor='white', fontsize='small', title_fontsize='small', labelcolor='white')  # Set legend properties
 
     # Save proof plot to a BytesIO object
     proof_img = BytesIO()
-    plt.savefig(proof_img, format='png')
+    plt.savefig(proof_img, format='png', facecolor='black', transparent=True)
     proof_img.seek(0)
     
     # Embed proof plot into HTML
