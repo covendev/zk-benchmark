@@ -41,11 +41,17 @@ def index():
 
     # Plot the verify data with specified colors
     ax1 = verify_pivot_df.plot(kind='bar', figsize=(10, 6), color=['#006C84', '#EDE574'])
-    plt.title('Average Verify Duration by Job Size and Prover')
-    plt.xlabel('Job Size')
-    plt.ylabel('Average Verify Duration (microseconds)')
-    plt.xticks(rotation=0)
-    plt.legend(title='Prover')
+    ax1.set_facecolor('black')  # Set plot background color
+    ax1.tick_params(axis='x', colors='white')  # Set x-axis text color
+    ax1.tick_params(axis='y', colors='white')  # Set y-axis text color
+    ax1.spines['bottom'].set_color('white')  # Set bottom border color
+    ax1.spines['left'].set_color('white')  # Set left border color
+    plt.title('Average Verify Duration by Job Size and Prover', color='white')  # Set plot title color
+    plt.xlabel('Job Size', color='white')  # Set x-axis label color
+    plt.ylabel('Average Verify Duration (microseconds)', color='white')  # Set y-axis label color
+    plt.xticks(rotation=0, color='white')  # Set x-axis tick color
+    plt.yticks(color='white')  # Set y-axis tick color
+    plt.legend(title='Prover', facecolor='black', edgecolor='white', fontsize='small', title_fontsize='small')  # Set legend properties
 
     # Save verify plot to a BytesIO object
     verify_img = BytesIO()
@@ -63,11 +69,17 @@ def index():
 
     # Plot the proof data
     ax2 = proof_pivot_df.plot(kind='bar', figsize=(10, 6), color=['#006C84', '#EDE574'])
-    plt.title('Average Proof Duration by Job Size and Prover')
-    plt.xlabel('Job Size')
-    plt.ylabel('Average Proof Duration (microseconds)')
-    plt.xticks(rotation=0)
-    plt.legend(title='Prover')
+    ax2.set_facecolor('black')  # Set plot background color
+    ax2.tick_params(axis='x', colors='white')  # Set x-axis text color
+    ax2.tick_params(axis='y', colors='white')  # Set y-axis text color
+    ax2.spines['bottom'].set_color('white')  # Set bottom border color
+    ax2.spines['left'].set_color('white')  # Set left border color
+    plt.title('Average Proof Duration by Job Size and Prover', color='white')  # Set plot title color
+    plt.xlabel('Job Size', color='white')  # Set x-axis label color
+    plt.ylabel('Average Proof Duration (microseconds)', color='white')  # Set y-axis label color
+    plt.xticks(rotation=0, color='white')  # Set x-axis tick color
+    plt.yticks(color='white')  # Set y-axis tick color
+    plt.legend(title='Prover', facecolor='black', edgecolor='white', fontsize='small', title_fontsize='small')  # Set legend properties
 
     # Save proof plot to a BytesIO object
     proof_img = BytesIO()
