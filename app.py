@@ -39,8 +39,8 @@ def index():
     # Pivot the DataFrame for plotting
     pivot_df = grouped.pivot(index='job_size', columns='prover', values='verify_duration_microsec')
 
-    # Plot the data
-    ax = pivot_df.plot(kind='bar', figsize=(10, 6))
+    # Plot the data with specified colors
+    ax = pivot_df.plot(kind='bar', figsize=(10, 6), color=['yellow', 'blue'])
     plt.title('Average Verify Duration by Job Size and Prover')
     plt.xlabel('Job Size')
     plt.ylabel('Average Verify Duration (microseconds)')
