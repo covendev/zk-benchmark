@@ -34,28 +34,50 @@ def index():
     df = pd.read_csv(StringIO(csv_data))
 
     # Group by 'prover' and 'job_size' and calculate the average verify duration
-    grouped = df.groupby(['prover', 'job_size'])['verify_duration_microsec'].mean().reset_index()
+    verify_grouped = df.groupby(['prover', 'job_size'])['verify_duration_microsec'].mean().reset_index()
 
     # Pivot the DataFrame for plotting
-    pivot_df = grouped.pivot(index='job_size', columns='prover', values='verify_duration_microsec')
+    verify_pivot_df = verify_grouped.pivot(index='job_size', columns='prover', values='verify_duration_microsec')
 
-    # Plot the data with specified colors
-    ax = pivot_df.plot(kind='bar', figsize=(10, 6), color=['yellow', 'blue'])
+    # Plot the verify data with specified colors
+    ax1 = verify_pivot_df.plot(kind='bar', figsize=(10, 6), color=['#006C84', '#EDE574'])
     plt.title('Average Verify Duration by Job Size and Prover')
     plt.xlabel('Job Size')
     plt.ylabel('Average Verify Duration (microseconds)')
     plt.xticks(rotation=0)
     plt.legend(title='Prover')
 
-    # Save plot to a BytesIO object
-    img = BytesIO()
-    plt.savefig(img, format='png')
-    img.seek(0)
+    # Save verify plot to a BytesIO object
+    verify_img = BytesIO()
+    plt.savefig(verify_img, format='png')
+    verify_img.seek(0)
     
-    # Embed plot into HTML
-    plot_url = base64.b64encode(img.getvalue()).decode()
-    print(plot_url)
-    return render_template('index.html', plot_url=plot_url)
+    # Embed verify plot into HTML
+    verify_plot_url = base64.b64encode(verify_img.getvalue()).decode()
+
+    # Group by 'prover' and 'job_size' and calculate the average proof duration
+    proof_grouped = df.groupby(['prover', 'job_size'])['proof_duration_microsec'].mean().reset_index()
+
+    # Pivot the DataFrame for plotting
+    proof_pivot_df = proof_grouped.pivot(index='job_size', columns='prover', values='proof_duration_microsec')
+
+    # Plot the proof data
+    ax2 = proof_pivot_df.plot(kind='bar', figsize=(10, 6), color=['#006C84', '#EDE574'])
+    plt.title('Average Proof Duration by Job Size and Prover')
+    plt.xlabel('Job Size')
+    plt.ylabel('Average Proof Duration (microseconds)')
+    plt.xticks(rotation=0)
+    plt.legend(title='Prover')
+
+    # Save proof plot to a BytesIO object
+    proof_img = BytesIO()
+    plt.savefig(proof_img, format='png')
+    proof_img.seek(0)
+    
+    # Embed proof plot into HTML
+    proof_plot_url = base64.b64encode(proof_img.getvalue()).decode()
+
+    return render_template('index.html', verify_plot_url=verify_plot_url, proof_plot_url=proof_plot_url)
 
 if __name__ == '__main__':
     freezer.freeze()
